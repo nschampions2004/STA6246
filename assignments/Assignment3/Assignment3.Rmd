@@ -1,0 +1,112 @@
+---
+title: "Assignment3"
+author: "Kyle Ligon"
+date: "2/11/2020"
+output: pdf_document
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+
+1) 
+C) Analyze the residuals from this experiment and comment on model adequacy.  Use R.
+
+```{r, fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+cotton_data <- tibble(
+  cotton_factor = gl(n = 5, k = 5, label = c("15", "20", "25", "30", "35")),
+  tensile_strength = c(7, 7, 15, 11, 9, 12, 17, 12, 18, 18, 14, 19, 19, 18, 18, 19, 25, 22, 19, 23, 7, 10, 11, 15, 11))
+
+cotton_anova <- aov(tensile_strength ~ cotton_factor, data = cotton_data)
+
+cotton_data_clean <- cotton_data %>%
+  mutate(residuals = cotton_anova$residuals)
+
+ggplot(data = cotton_data_clean, aes(x = tensile_strength, y = residuals)) +
+  geom_point() +
+  labs(title = "Residuals by Tensile Strength")
+```
+
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+ggplot(data = cotton_data_clean, aes(x = cotton_factor, y = residuals)) + 
+  geom_point() +
+  labs(title = "Residuals by Cotton Factor")
+```
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+qplot(cotton_data_clean$residuals) +
+  stat_bin(bins = 5)
+```
+
+Overall, the residuals for problem 1, look fine.  There's a random spattering around each of the cotton factors and the histogram of the residuals looks fine.  
+
+2) 
+C) Analyze the residuals from this experiment and comment on model adequacy. Use R.
+
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+circuit_data <- tibble(
+  circuit_type = gl(n = 3, k = 5, labels = c("1", "2", "3")),
+  response_time = c(9, 12, 10, 8, 15, 20, 21, 23, 17, 30, 6, 5, 8, 16, 7)
+)
+
+circuit_anova <- aov(response_time ~ circuit_type, data = circuit_data)
+
+circuit_data_clean <- circuit_data %>%
+  mutate(residuals = circuit_anova$residuals)
+
+ggplot(data = circuit_data_clean, aes(x = response_time, y = residuals)) +
+  geom_point() +
+  labs(title = "Residuals by Response Time")
+```
+
+
+
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+ggplot(data = circuit_data_clean, aes(x = circuit_type, y = residuals)) + 
+  geom_point() +
+  labs(title = "Residuals by Circuit Type")
+```
+
+
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+qplot(circuit_data_clean$residuals) +
+  stat_bin(bins = 3) +
+  labs(title = "Histogram Residuals")
+```
+
+Overall, the residuals for problem 1, look fine.  There's a random spattering around each of the circuit type and the histogram of the residuals looks fine.  
+
+
+3) 
+E) Analyze the residuals from this experiment and comment on model adequacy. Use R.
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+calcium_data <- tibble(
+  batch_number = gl(n = 5, k = 5, labels = c("batch_1", "batch_2", "batch_3",
+                                              "batch_4", "batch_5")),
+  calcium_content = c(23.46, 23.48, 23.56, 23.39, 23.40, 23.59, 23.46, 23.42, 23.49, 23.50, 23.51, 23.64, 23.46, 23.52, 23.49, 23.28, 23.40, 23.37, 23.46, 23.39, 23.29, 23.46, 23.37, 23.32, 23.38)
+)
+
+calcium_anova <- aov(calcium_content ~ batch_number, data = calcium_data)
+
+calcium_data_clean <- calcium_data %>%
+  mutate(residuals = calcium_anova$residuals)
+
+ggplot(data = calcium_data_clean, aes(x = calcium_content, y = residuals)) +
+  geom_point() +
+  labs(title = "Residuals by Calcium Content")
+```
+
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+ggplot(data = calcium_data_clean, aes(x = batch_number, y = residuals)) + 
+  geom_point() +
+  labs(title = "Residuals by Batch Number")
+
+```
+
+```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
+qplot(calcium_data_clean$residuals) +
+  stat_bin(bins = 3) +
+  labs(title = "Histogram Residuals")
+```
+
+These residuals are the best out of the three problems.  Their spattering by batch number and nice histogram make for an awesome model and we could proceed to post-hoc testing bearing a check on the p-value.  
