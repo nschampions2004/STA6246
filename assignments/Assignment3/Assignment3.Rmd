@@ -4,11 +4,13 @@ author: "Kyle Ligon"
 date: "2/11/2020"
 output: pdf_document
 ---
+\begin{center}
+\includegraphics[width=8in]{final/pg_one.pdf} 
+\end{center}
 
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 ```
-
 
 1) 
 C) Analyze the residuals from this experiment and comment on model adequacy.  Use R.
@@ -39,6 +41,13 @@ qplot(cotton_data_clean$residuals) +
 ```
 
 Overall, the residuals for problem 1, look fine.  There's a random spattering around each of the cotton factors and the histogram of the residuals looks fine.  
+
+
+
+\begin{center}
+\includegraphics[width=8in]{final/pg_two.pdf} 
+\end{center}
+
 
 2) 
 C) Analyze the residuals from this experiment and comment on model adequacy. Use R.
@@ -76,7 +85,10 @@ qplot(circuit_data_clean$residuals) +
 
 Overall, the residuals for problem 1, look fine.  There's a random spattering around each of the circuit type and the histogram of the residuals looks fine.  
 
-
+\begin{center}
+\includegraphics[width=8in]{final/pg_three.pdf} 
+\includegraphics[width=8in]{final/pg_four.pdf} 
+\end{center}
 3) 
 E) Analyze the residuals from this experiment and comment on model adequacy. Use R.
 ```{r,fig.width = 3, fig.height = 3, warning=FALSE, message=FALSE, fig.align="center"}
