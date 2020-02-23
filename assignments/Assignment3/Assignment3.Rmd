@@ -86,8 +86,9 @@ qplot(circuit_data_clean$residuals) +
 Overall, the residuals for problem 1, look fine.  There's a random spattering around each of the circuit type and the histogram of the residuals looks fine.  
 
 \begin{center}
-\includegraphics[width=8in]{final/pg_three.pdf} 
-\includegraphics[width=8in]{final/pg_four.pdf} 
+\includegraphics[width=8in, angle = 180]{final/pg_three.pdf} 
+\includegraphics[width=thunderbird
+8in, angle = 180]{final/pg_four.pdf} 
 \end{center}
 3) 
 E) Analyze the residuals from this experiment and comment on model adequacy. Use R.
